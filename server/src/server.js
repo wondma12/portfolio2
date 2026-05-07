@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
@@ -697,7 +697,19 @@ app.get('/health', (req, res) => {
 });
 
 // ==================== START SERVER ====================
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`\n🚀 Server running on http://localhost:${PORT}`);
-   console.log(`🔐 Auth: http://localhost:${PORT}/api/auth/login\n`);
+    console.log(`🔐 Auth: http://localhost:${PORT}/api/auth/login\n`);
+});
+
+server.on('error', (err) => {
+    if (err && err.code === 'EADDRINUSE') {
+        console.error(`\n❌ Port ${PORT} is already in use. Kill the process using it or set a different PORT environment variable.`);
+        console.error('   Example: in PowerShell run:');
+        console.error('     netstat -ano | findstr :5000');
+        console.error('     taskkill /PID <pid> /F');
+        process.exit(1);
+    } else {
+        console.error('Server error:', err);
+    }
 });
