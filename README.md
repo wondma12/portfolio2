@@ -35,5 +35,5 @@ A full-stack portfolio application built with React, Node.js, Express, and MySQL
 - Helmet for security
 - CORS for cross-origin requests
 
-## Installation
+
 
