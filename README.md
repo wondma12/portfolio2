@@ -16,7 +16,7 @@ A full-stack portfolio application built with React, Node.js, Express, and MySQL
 - ✅ MySQL database with proper relationships
 
 ## Tech Stack
-
+## hayyy
 ### Frontend
 - React 18 with Vite
 - Tailwind CSS for styling
@@ -37,7 +37,3 @@ A full-stack portfolio application built with React, Node.js, Express, and MySQL
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd portfolio
