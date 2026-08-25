@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import mysql from 'mysql2/promise';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { config } from './config/index.js';
+import pool from './config/db.js';
 
 const app = express();
 const PORT = config.port;
@@ -14,13 +14,6 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
-
-// Database connection
-const pool = mysql.createPool({
-    ...config.db,
-    waitForConnections: true,
-    connectionLimit: 10
-});
 
 // Test database connection
 pool.getConnection()

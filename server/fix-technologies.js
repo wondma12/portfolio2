@@ -1,21 +1,11 @@
-import mysql from 'mysql2/promise';
+import pool from './src/config/db.js';
 
 async function fixTechnologies() {
-    // IMPORTANT: Change this to your MySQL password
-    const MYSQL_PASSWORD = 'Haymi@mysql1'; // Put your password here
-    
-    const connection = await mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: MYSQL_PASSWORD,
-        database: 'portfolio_db'
-    });
-    
     try {
         console.log('\n🔧 Fixing technologies format...\n');
         
         // Get all projects
-        const [projects] = await connection.query('SELECT id, technologies FROM projects');
+        const [projects] = await pool.query('SELECT id, technologies FROM projects');
         
         for (const project of projects) {
             console.log(`Processing project ${project.id}: ${project.technologies}`);
@@ -27,7 +17,7 @@ async function fixTechnologies() {
                 const techJson = JSON.stringify(techArray);
                 
                 // Update the database
-                await connection.query(
+                await pool.query(
                     'UPDATE projects SET technologies = ? WHERE id = ?',
                     [techJson, project.id]
                 );
@@ -37,11 +27,13 @@ async function fixTechnologies() {
         
         // Verify the fix
         console.log('\n🔍 Verifying fix...\n');
-        const [updatedProjects] = await connection.query('SELECT id, technologies FROM projects');
+        const [updatedProjects] = await pool.query('SELECT id, technologies FROM projects');
         
         for (const project of updatedProjects) {
             try {
-                const parsed = JSON.parse(project.technologies);
+                const parsed = typeof project.technologies === 'string'
+                    ? JSON.parse(project.technologies)
+                    : project.technologies;
                 console.log(`✅ Project ${project.id}: ${parsed.join(', ')}`);
             } catch (e) {
                 console.log(`❌ Project ${project.id} still has invalid format: ${project.technologies}`);
@@ -53,7 +45,6 @@ async function fixTechnologies() {
     } catch (error) {
         console.error('❌ Error:', error.message);
     } finally {
-        await connection.end();
     }
 }
 

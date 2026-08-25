@@ -22,4 +22,4 @@ Set the frontend service to:
 - Build Command: `npm ci && npm run build`
 - Publish Directory: `dist`
 
-Add `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `JWT_SECRET`, and `CLIENT_URL` as Render environment variables. Do not commit `.env` or production credentials.
+Create a Neon project, open its SQL Editor, and run `database/database.sql`. Copy Neon’s pooled connection string into Render’s `DATABASE_URL` variable; it should include `sslmode=require`. Also set `JWT_SECRET` and `CLIENT_URL` in Render. Do not commit `.env` or production credentials.
