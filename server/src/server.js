@@ -687,6 +687,22 @@ app.get('/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date() });
 });
 
+// ==================== API ROOT ====================
+app.get('/', (req, res) => {
+    res.json({
+        name: 'Portfolio API',
+        status: 'OK',
+        health: '/health',
+        endpoints: {
+            auth: '/api/auth',
+            projects: '/api/projects',
+            blog: '/api/blog',
+            contact: '/api/contact',
+            profile: '/api/profile'
+        }
+    });
+});
+
 // ==================== START SERVER ====================
 const server = app.listen(PORT, () => {
     console.log(`\n🚀 Server running on http://localhost:${PORT}`);
