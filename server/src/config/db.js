@@ -13,6 +13,8 @@ const pgPool = new Pool(config.db.connectionString
         user: config.db.user,
         password: config.db.password,
         database: config.db.database,
+        port: config.db.port,
+        ssl: config.db.ssl ? { rejectUnauthorized: false } : undefined,
         max: config.db.connectionLimit
     });
 

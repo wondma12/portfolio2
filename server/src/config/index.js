@@ -11,6 +11,8 @@ export const config = {
         user: process.env.DB_USER || 'root',
         password: process.env.DB_PASSWORD || '',
         database: process.env.DB_NAME || 'portfolio_db',
+        port: Number(process.env.DB_PORT || 5432),
+        ssl: process.env.DB_SSL === 'true',
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0
