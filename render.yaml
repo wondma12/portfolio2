@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: portfolio-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+
+  - type: web
+    name: portfolio-client
+    runtime: static
+    rootDir: client
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://portfolio-api.onrender.com/api

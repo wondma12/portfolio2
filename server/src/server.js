@@ -3,23 +3,21 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { config } from './config/index.js';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = config.port;
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    origin: [config.clientUrl, 'http://localhost:5173', 'http://localhost:3000'],
     credentials: true
 }));
 app.use(express.json());
 
 // Database connection
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'Haymi@mysql1', // Your password
-    database: 'portfolio_db',
+    ...config.db,
     waitForConnections: true,
     connectionLimit: 10
 });
@@ -34,7 +32,7 @@ pool.getConnection()
         console.error('❌ Database connection failed:', err.message);
     });
 
-const JWT_SECRET = 'mysecretkey123456789';
+const JWT_SECRET = config.jwt.secret;
 
 // ==================== AUTH MIDDLEWARE ====================
 const authenticateToken = async (req, res, next) => {
