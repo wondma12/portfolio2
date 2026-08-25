@@ -146,7 +146,7 @@ app.get('/api/projects', async (req, res) => {
                 github_url: project.github_url,
                 live_url: project.live_url,
                 technologies: technologies,
-                featured: project.featured === 1,
+                featured: Boolean(project.featured),
                 order_index: project.order_index,
                 created_at: project.created_at,
                 updated_at: project.updated_at
