@@ -14,8 +14,9 @@ services:
       - key: CLIENT_URL
         sync: false
 
-  - type: static
+  - type: web
     name: portfolio-client
+    runtime: static
     rootDir: client
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
