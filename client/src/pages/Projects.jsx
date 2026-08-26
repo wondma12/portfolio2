@@ -90,7 +90,7 @@ const Projects = () => {
     return (
       <>
         <Navbar />
-        <section id="projects" className="projects">
+        <section id="projects" className="projects-page">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -128,7 +128,7 @@ const Projects = () => {
     return (
       <>
         <Navbar />
-        <section id="projects" className="projects">
+        <section id="projects" className="projects-page">
           <div className="projects-error">
             <h3>Error Loading Projects</h3>
             <p>{error}</p>
