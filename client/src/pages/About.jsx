@@ -28,13 +28,6 @@ const About = () => {
     }
   };
 
-  const stats = [
-    { number: '1+', label: 'Years Experience' },
-    { number: '5+', label: 'Projects Completed' },
-    { number: '2+', label: 'Happy Clients' },
-    { number: '10+', label: 'Technologies' }
-  ];
-
   const interests = [
     { icon: '💻', name: 'Open Source' },
     { icon: '📱', name: 'Mobile Apps' },
@@ -94,22 +87,8 @@ const About = () => {
                   </p>
                 </motion.div>
 
-                {/* Experience & Specialties */}
+                {/* Skills & Expertise */}
                 <div className="details-grid">
-                  <motion.div className="detail-card" variants={itemVariants}>
-                    <h4>💼 Work Experience</h4>
-                    <div className="experience-item">
-                      <h5>Full Stack Developer</h5>
-                      <p className="company">Tech Corp </p>
-                      <p>Lead development of multiple React applications, mentored junior developers, and implemented best practices for code quality and performance.</p>
-                    </div>
-                    <div className="experience-item">
-                      <h5>Full Stack Developer</h5>
-                      <p className="company">StartUp Inc </p>
-                      <p>Developed and maintained full-stack applications using MERN stack, implemented RESTful APIs, and optimized database queries.</p>
-                    </div>
-                  </motion.div>
-
                   <motion.div className="detail-card" variants={itemVariants}>
                     <h4>🎯 Skills & Expertise</h4>
                     <ul>
@@ -138,23 +117,8 @@ const About = () => {
                 </motion.div> */}
                </div>
 
-              {/* Sidebar with Stats & Interests */}
+              {/* Sidebar with Interests */}
               <motion.div className="about-sidebar" variants={itemVariants}>
-                {/* Stats */}
-                <div className="stats-grid">
-                  {stats.map((stat, index) => (
-                    <motion.div
-                      key={stat.label}
-                      className="stat-item"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <h3>{stat.number}</h3>
-                      <p>{stat.label}</p>
-                    </motion.div>
-                  ))}
-                </div>
-
                 {/* Certifications */}
                 {/* <div className="certifications-section">
                   <h4>📜 Certifications</h4>
