@@ -94,14 +94,14 @@ const Navbar = () => {
                             </motion.button>
                         ) : (
                             <Link to="/admin/login">
-                                <motion.button
+                                {/* <motion.button
                                     className="login-btn"
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     <FaSignInAlt />
                                     <span>Login</span>
-                                </motion.button>
+                                </motion.button> */}
                             </Link>
                         )}
                     </div>
